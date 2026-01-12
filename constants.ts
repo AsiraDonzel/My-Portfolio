@@ -158,6 +158,26 @@ export const PROJECTS: Project[] = [
     type: ProjectType.LIVE,
     liveUrl: "https://nuesaabuad.ng",
     githubUrl: "#"
+  },
+
+{
+    id: '2',
+    title: 'BREW',
+    description: 'BREW. is a high-end e-commerce showcase designed with a "Linear" aesthetic. It moves beyond traditional storefronts by integrating a Gemini-powered AI Sommelier, creating a sophisticated, personalized shopping experience for coffee enthusiasts.',
+    tags: ['Node.js', 'Next', 'React'],
+    image: '/images/img1.jpg',
+    type: ProjectType.VIBE,
+    githubUrl: "https://github.com/AsiraDonzel/Brew"
+  },
+
+{
+    id: '3',
+    title: 'TaskFlow Pro',
+    description: 'A high-performance Kanban board built with React 19, Framer Motion, and Gemini 2.0. AuraFlow automates task breakdown using AI, features real-time productivity analytics, and delivers a premium "glassmorphism" user experience with fluid drag-and-drop interactions.',
+    tags: ['Next', 'React', 'TypeSript'],
+    image: '/images/img6.jpg',
+    type: ProjectType.VIBE,
+    githubUrl: "https://github.com/AsiraDonzel/TaskFlow"
   }
 ];
 
@@ -210,6 +230,7 @@ export const EXPERIENCE: Experience[] = [
     company: 'Foundations & Skills Expansion', 
     description: 'In 2024, I focused on expanding my technical skills and building a solid foundation for my career. I learned new languages and frameworks, including Next.js, Node.js, MySQL, Django, Wagtail, and explored Docker. I completed my first Udemy certification and began a new certification in UI/UX design, applying my knowledge to develop various demo projects. Alongside certifications, I worked on engineering projects from school assignments, gaining hands-on experience and reinforcing my understanding of software development and systems design. While much of the year was focused on schoolwork, it was an important period of skill growth and preparation for more advanced projects.', 
     type: 'JOURNEY',
+    image: '/images/img7.jpg'
   },
   { 
     id: 'j4', 
@@ -218,10 +239,7 @@ export const EXPERIENCE: Experience[] = [
     company: 'Experience & Impact', 
     description: '2025 has been an exciting and transformative year. I completed a 6-month internship at an auditing firm, gaining valuable experience in a different field and developing essential interpersonal and teamwork skills. I also worked on my first freelance project, creating a website for NUESA at my university alongside a talented partner. Entering my final year, I began developing a hybrid attendance monitoring system, started writing my thesis, and later got a second freelance project: an e-commerce store for a thrift shop. Beyond school and work, I continued my personal growth by learning German, achieving the B1 certificate, and collaborating with friends on two business ventures, exploring entrepreneurship and teamwork. Balancing academics, projects, freelancing, and personal growth has been challenging, but this year has been deeply rewarding, full of learning, skill development, and real-world impact.', 
     type: 'JOURNEY',
-    images: [
-      '/images/img5.jpg',
-      '/images/img6.jpg',
-    ] 
+    image: '/images/img5.jpg',
   },
   { 
     id: 'j5', 

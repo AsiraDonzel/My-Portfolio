@@ -212,7 +212,7 @@ export const PersonalView: React.FC<PersonalViewProps> = ({ t }) => {
               <p className="text-slate-400 mt-2">{t.personal.gaming.description}</p>
             </div>
               <div className="absolute -bottom-10 -right-10 opacity-10 group-hover:opacity-20 transition-opacity">
-                <Gamepad2 size={200} className="rotate-12" />
+                <p><Gamepad2 size={200} className="rotate-12" /></p>
               </div>
             </div>
           </TiltCard>
@@ -294,24 +294,24 @@ export const PersonalView: React.FC<PersonalViewProps> = ({ t }) => {
 
       {/* 4. Footer */}
       <footer className="mt-40 mb-16 flex flex-col items-center text-center">
-         <div className="mb-12 relative">
+          <div className="mb-12 relative">
             <motion.div animate={{ rotate: 360 }} transition={{ duration: 10, repeat: Infinity, ease: "linear" }} className="absolute inset-0 bg-gradient-to-r from-purple-500 to-indigo-500 rounded-full blur-2xl opacity-20" />
             <svg width="280" height="80" viewBox="0 0 300 100" className="stroke-white fill-none stroke-[1.5] relative z-10">
                <motion.path d="M20,60 Q50,20 80,60 T140,60 T200,60 T260,60" initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} transition={{ duration: 2.5 }} />
                <text x="50%" y="65%" textAnchor="middle" className="fill-white font-display text-3xl font-black uppercase">DONZEL ASIRA</text>
             </svg>
-         </div>
-         <h3 className="text-5xl md:text-7xl font-display font-black text-transparent bg-clip-text bg-gradient-to-b from-white to-indigo-400/50 mb-8 uppercase tracking-tighter italic underline decoration-indigo-500/50 underline-offset-8">
+          </div>
+          <h3 className="text-5xl md:text-7xl font-display font-black text-transparent bg-clip-text bg-gradient-to-b from-white to-indigo-400/50 mb-8 uppercase tracking-tighter italic underline decoration-indigo-500/50 underline-offset-8">
             {t.personal.footerTitle}
-         </h3>
-         <div className="flex items-center gap-8 p-6 rounded-[2.5rem] bg-white/5 border border-white/10 backdrop-blur-3xl shadow-2xl">
+          </h3>
+          <div className="flex items-center gap-8 p-6 rounded-[2.5rem] bg-white/5 border border-white/10 backdrop-blur-3xl shadow-2xl">
             {[{ icon: Github, color: 'bg-black', link: 'https://github.com/AsiraDonzel' }, { icon: Linkedin, color: 'bg-[#0077b5]', link: 'https://www.linkedin.com/in/donzel-asira-99b5a3365' }, { icon: Instagram, color: 'bg-gradient-to-tr from-[#f09433] via-[#dc2743] to-[#bc1888]', link: '/' }].map((soc, i) => (
                 <a key={i} href={soc.link} target="_blank" rel="noreferrer"><MagneticButton className={`p-5 rounded-2xl ${soc.color} text-white shadow-lg`}><soc.icon size={28} /></MagneticButton></a>
             ))}
-         </div>
-         <div className="mt-20 text-[10px] text-gray-600 uppercase tracking-[0.5em] font-bold">
+          </div>
+          <div className="mt-20 text-[10px] text-gray-600 uppercase tracking-[0.5em] font-bold">
             {t.personal.copyright} • © {new Date().getFullYear()}
-         </div>
+          </div>
       </footer>
     </motion.div>
   );
