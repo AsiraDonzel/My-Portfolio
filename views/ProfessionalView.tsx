@@ -3,7 +3,7 @@ import { motion, useScroll, useTransform, useSpring, useMotionValue, animate, An
 import { Translation, ProjectType } from '../types';
 import { PROJECTS, EXPERIENCE } from '../constants';
 import { 
-  Briefcase, GraduationCap, TrendingUp, ShieldCheck, Zap, Code2, 
+  Briefcase, GraduationCap, TrendingUp, Zap, Code2, 
   Map, Sparkles, Github, Terminal, Globe2, Cpu, Copy, Check, 
   ExternalLink, Instagram, Linkedin, Eye 
 } from 'lucide-react';
@@ -14,7 +14,7 @@ interface ProfessionalViewProps {
   t: Translation;
 }
 
-// --- 3D Tilt Card Component (Preserved) ---
+// --- 3D Tilt Card Component ---
 const TiltCard: React.FC<{children: React.ReactNode, className?: string}> = ({ children, className = "" }) => {
   const x = useMotionValue(0);
   const y = useMotionValue(0);
@@ -41,10 +41,9 @@ const TiltCard: React.FC<{children: React.ReactNode, className?: string}> = ({ c
   );
 };
 
-// --- Animated Counter (Preserved) ---
+// --- Animated Counter ---
 const Counter = ({ value, duration = 2 }: { value: string; duration?: number }) => {
   const [displayValue, setDisplayValue] = useState(0);
-  
   const numericPart = value.match(/\d+/);
   const numericValue = numericPart ? parseInt(numericPart[0]) : null;
   const suffix = value.replace(/[0-9]/g, '');
@@ -59,14 +58,10 @@ const Counter = ({ value, duration = 2 }: { value: string; duration?: number }) 
     }
   }, [numericValue, duration]);
 
-  return (
-    <span>
-      {numericValue !== null ? `${displayValue}${suffix}` : value}
-    </span>
-  );
+  return <span>{numericValue !== null ? `${displayValue}${suffix}` : value}</span>;
 };
 
-// --- Animation Variants (Preserved) ---
+// --- Animation Variants ---
 const containerVars = {
   hidden: { opacity: 0 },
   show: { opacity: 1, transition: { staggerChildren: 0.15 } },
@@ -111,10 +106,9 @@ export const ProfessionalView: React.FC<ProfessionalViewProps> = ({ t }) => {
   const liveProjects = PROJECTS.filter(p => p.type === ProjectType.LIVE);
   const filteredPlayground = PROJECTS.filter(p => p.type === activeTab);
   
-  const roleText = t?.hero?.role || "Senior Full-Stack Engineer"; 
-  const locationText = t?.hero?.location || "Remote";
+  const roleText = t?.hero?.role || "Full-Stack Web Developer"; 
+  const locationText = t?.hero?.location || "Nigeria";
 
-  // --- Updated Data Logic (Total Control Integrated) ---
   const workData = EXPERIENCE.filter(item => item.type === 'WORK').map(item => {
     if (item.id === '1' && t.language === 'DE') {
       return { ...item, role: t.professional.journey.work1Role, description: t.professional.journey.work1Desc };
@@ -178,17 +172,19 @@ export const ProfessionalView: React.FC<ProfessionalViewProps> = ({ t }) => {
         </motion.div>
       </section>
 
-      {/* 1. Hero Section */}
-      <section className="mb-32 flex flex-col md:flex-row items-center gap-16 relative">
-        <motion.div variants={itemVars} className="flex-1 space-y-8 z-10">
+      {/* 1. Hero Section - Stabilized for Language Switching */}
+      <section className="mb-32 flex flex-col lg:flex-row items-center justify-between gap-12 lg:gap-16 relative min-h-[500px]">
+        <motion.div variants={itemVars} className="flex-1 space-y-8 z-10 w-full order-2 lg:order-1">
           <div className="inline-flex items-center gap-2 px-3 py-1 border border-emerald-500/30 bg-emerald-500/10 text-emerald-400 text-xs font-bold tracking-wider uppercase rounded-full">
             <Zap size={12} className="animate-pulse" />
             {t.language === 'EN' ? 'Available for hire' : 'Bereit für Projekte'}
           </div>
-          <h1 className="text-5xl md:text-8xl font-display font-bold tracking-tight text-white leading-[0.9]">
+          <h1 className="text-5xl md:text-7xl lg:text-8xl font-display font-bold tracking-tight text-white leading-[0.9] min-h-[1.2em]">
             {roleText.split(' ').map((word, i) => <span key={i} className="block">{word}</span>)}
           </h1>
-          <p className="text-xl text-slate-400 max-w-lg leading-relaxed font-light italic border-l-2 border-emerald-500/20 pl-6">{locationText}</p>
+          <p className="text-lg md:text-xl text-slate-400 max-w-lg leading-relaxed font-light italic border-l-2 border-emerald-500/20 pl-6">
+            {locationText}
+          </p>
           
           <div className="flex flex-wrap items-center gap-6 pt-4">
             <motion.a 
@@ -223,13 +219,13 @@ export const ProfessionalView: React.FC<ProfessionalViewProps> = ({ t }) => {
           </div>
         </motion.div>
         
-        <motion.div variants={itemVars} className="relative w-72 h-72 md:w-[500px] md:h-[500px]">
-            <motion.div style={{ y: y1 }} className="absolute inset-0 rounded-full border border-slate-800 animate-[spin_60s_linear_infinite]" />
-            <div className="absolute inset-0 flex items-center justify-center">
-                 <div className="w-64 h-64 md:w-96 md:h-96 rounded-full overflow-hidden border-8 border-slate-900/50 relative grayscale hover:grayscale-0 transition-all duration-1000 shadow-2xl">
-                     <img src="/images/img1.jpeg" alt="Avatar" className="w-full h-full object-cover" />
-                 </div>
+        {/* Image Container - Fixed Dimensions to stop shifting */}
+        <motion.div variants={itemVars} className="relative flex justify-center items-center w-full lg:w-auto order-1 lg:order-2">
+            <motion.div style={{ y: y1 }} className="absolute w-[300px] h-[300px] md:w-[450px] md:h-[450px] rounded-full border border-slate-800 animate-[spin_60s_linear_infinite]" />
+            <div className="relative w-64 h-64 md:w-80 md:h-80 lg:w-96 lg:h-96 rounded-full overflow-hidden border-8 border-slate-900/50 grayscale hover:grayscale-0 transition-all duration-1000 shadow-2xl z-20">
+                 <img src="/images/img1.jpeg" alt="Avatar" className="w-full h-full object-cover" />
             </div>
+            <div className="absolute inset-0 bg-emerald-500/5 blur-[100px] rounded-full -z-10" />
         </motion.div>
       </section>
 
@@ -237,7 +233,7 @@ export const ProfessionalView: React.FC<ProfessionalViewProps> = ({ t }) => {
       <section className="mb-40">
         <motion.div variants={itemVars} className="flex items-center gap-4 mb-12">
             <h3 className="text-3xl font-display font-bold text-white uppercase tracking-widest italic">
-              {t.professional.coreExpertise}
+              {t.professional.journeyTitle}
             </h3>
             <div className="h-[1px] flex-1 bg-slate-800"></div>
         </motion.div>
@@ -246,11 +242,11 @@ export const ProfessionalView: React.FC<ProfessionalViewProps> = ({ t }) => {
           <TiltCard className="md:col-span-8 md:row-span-2">
              <div className="h-full bg-slate-950 rounded-[2rem] border border-white/5 p-10 relative overflow-hidden group">
                 <div className="flex justify-between items-start mb-12">
-                   <div>
+                    <div>
                       <span className="text-[10px] text-emerald-400 font-bold uppercase tracking-[0.2em]">Primary Stack</span>
                       <h4 className="text-4xl font-display font-black text-white mt-2 uppercase tracking-tighter">Django, Node.js</h4>
-                   </div>
-                   <div className="p-4 bg-white/5 rounded-2xl text-emerald-500"><Cpu size={32} /></div>
+                    </div>
+                    <div className="p-4 bg-white/5 rounded-2xl text-emerald-500"><Cpu size={32} /></div>
                 </div>
                 <div className="flex flex-wrap gap-3">
                    {['HTML', 'Node.js', 'CSS', 'React', 'Next.js', 'Python', 'TypeScript', 'Django', 'MySQL', 'Tailwind', 'Wagtail'].map((tech) => (
@@ -322,7 +318,7 @@ export const ProfessionalView: React.FC<ProfessionalViewProps> = ({ t }) => {
                 <div className="space-y-2 text-slate-500">
                    <p className="text-emerald-400/80">// Graduation Status: Loading</p>
                    <p className="text-white/90 text-xl font-bold">Graduating soon, let's build what's next.</p>
-                   <p className="opacity-40">import {`{ moduleName }`} from 'future-path';</p>
+                   <p className="opacity-40">import {'{ moduleName }'} from 'future-path';</p>
                 </div>
              </div>
           </TiltCard>
@@ -355,15 +351,15 @@ export const ProfessionalView: React.FC<ProfessionalViewProps> = ({ t }) => {
       <motion.section variants={itemVars} className="mb-40">
         <div className="flex flex-col items-center mb-16 text-center">
             <h3 className="text-4xl md:text-6xl font-display font-bold text-white tracking-tighter uppercase mb-10 italic">
-              {t.professional.hubTitle}
+              {t.professional.journeyTitle}
             </h3>
-            <div className="flex bg-white/5 p-1.5 rounded-full backdrop-blur-2xl border border-white/10">
+            <div className="flex bg-white/5 p-1.5 rounded-full backdrop-blur-2xl border border-white/10 overflow-x-auto max-w-full">
                 {[
                   { id: 'WORK', icon: Briefcase, label: t.professional.tabs.work }, 
                   { id: 'EDUCATION', icon: GraduationCap, label: t.professional.tabs.education }, 
                   { id: 'JOURNEY', icon: Map, label: t.professional.tabs.journey }
                 ].map((type) => (
-                    <button key={type.id} onClick={() => setActiveTimeline(type.id as any)} className="relative px-8 py-4 rounded-full text-sm font-bold transition-all">
+                    <button key={type.id} onClick={() => setActiveTimeline(type.id as any)} className="relative px-6 md:px-8 py-4 rounded-full text-xs md:text-sm font-bold transition-all whitespace-nowrap">
                         {activeTimeline === type.id && <motion.div layoutId="timelineHighlight" className={`absolute inset-0 rounded-full shadow-2xl ${type.id === 'WORK' ? 'bg-emerald-600' : type.id === 'EDUCATION' ? 'bg-blue-600' : 'bg-purple-600'}`} />}
                         <span className={`relative z-10 flex items-center gap-2 ${activeTimeline === type.id ? 'text-white' : 'text-gray-400'}`}>
                             <type.icon size={16} /> {type.label}
@@ -398,9 +394,9 @@ export const ProfessionalView: React.FC<ProfessionalViewProps> = ({ t }) => {
       <section className="mb-32">
         <div className="flex flex-col items-center mb-16">
             <h2 className="text-4xl font-bold font-display mb-10 text-white tracking-tight uppercase italic">{t.personal.codingTitle}</h2>
-            <div className="flex bg-white/5 p-1.5 rounded-full backdrop-blur-2xl border border-white/10 shadow-inner">
+            <div className="flex bg-white/5 p-1.5 rounded-full backdrop-blur-2xl border border-white/10 shadow-inner overflow-x-auto max-w-full">
                 {[ProjectType.LIVE, ProjectType.DEMO, ProjectType.VIBE].map((type) => (
-                    <button key={type} onClick={() => setActiveTab(type)} className="relative px-8 py-4 rounded-full text-sm font-bold transition-all">
+                    <button key={type} onClick={() => setActiveTab(type)} className="relative px-6 md:px-8 py-4 rounded-full text-xs md:text-sm font-bold transition-all whitespace-nowrap">
                         {activeTab === type && <motion.div layoutId="subTabHighlight" className={`absolute inset-0 rounded-full shadow-2xl ${type === ProjectType.VIBE ? 'bg-gradient-to-r from-purple-600 to-pink-600' : 'bg-gradient-to-r from-indigo-600 to-blue-600'}`} />}
                         <span className={`relative z-10 flex items-center gap-2 ${activeTab === type ? 'text-white' : 'text-gray-400'}`}>
                             {type === ProjectType.VIBE && <Sparkles size={18} />}
